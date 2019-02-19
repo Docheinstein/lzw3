@@ -1,0 +1,44 @@
+NAME
+    uncompress - decompress files compressed using LZW algorithm
+
+SYNOPSIS
+    uncompress [-v] [-r] [-k] [-t] [-d] [file ...]
+
+DESCRIPTION
+    Decompress files previously compressed using LZW algorithm.
+
+    Replaces the compressed files with the uncompressed ones,
+    removing the extension ".Z".
+
+    The files are decompressed only if they end with the extension ".Z",
+    this is convenient for use the compressor and the decompressor on the
+    same directory recursively and avoid to care if the compressor actually
+    has created ".Z" files or kept the original files.
+
+    -r
+        Recursively decompress the files inside the directories
+        within the given file list.
+        If not specified, directories in the file list are skipped.
+
+    -v
+        Prints information about the handled files.
+
+    -t
+        Prints the time spent for decompress each file.
+
+    -k
+        Keeps the decompressed files after the decompression.
+
+    -d
+        Prints debug messages.
+
+AUTHOR
+    Written by Stefano Dottore.
+
+EXAMPLES
+
+    Decompress a directory recursively:
+        uncompress -r /home/user/Docs/Project
+
+    Decompress a list of files:
+        uncompress /home/user/Docs/f1.txt /home/user/Docs/f2.txt

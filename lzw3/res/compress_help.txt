@@ -1,0 +1,49 @@
+NAME
+    compress - compress files using LZW algorithm
+
+SYNOPSIS
+    compress [-v] [-r] [-k] [-t] [-d] [file ...]
+
+DESCRIPTION
+    Compress arbitrary file(s) using LZW algorithm.
+
+    Replaces the original file with the compressed one,
+    appending the extension ".Z".
+
+    The replacement is skipped in case the size of the compressed
+    file is not lower than the size of the original one.
+
+    The file list can contain either files or directories.
+
+    -r
+        Recursively compress the files inside the directories
+        within the given file list.
+        If not specified, directories in the file list are skipped.
+
+    -v
+        Prints information about the handled files and the percentage of
+        saved space for each compressed file.
+
+    -t
+        Prints the time spent for compress each file.
+
+    -k
+        Keeps the original files instead of replace those with the
+        compressed ones.
+
+    -d
+        Prints debug messages.
+
+AUTHOR
+    Written by Stefano Dottore.
+
+EXAMPLES
+
+    Compress a directory recursively:
+        compress -r /home/user/Docs/Project
+
+    Compress a list of files showing compression stats:
+        compress -v /home/user/Docs/f1.txt /home/user/Docs/f2.txt
+
+    Compress a list of files keeping the originals and showing compress times:
+        compress -k -v -t /home/user/Docs/f1.txt /home/user/Docs/f2.txt

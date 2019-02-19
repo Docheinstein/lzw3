@@ -1,0 +1,2 @@
+include lzw3/res/compress_help.txt
+include lzw3/res/uncompress_help.txt
