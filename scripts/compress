@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from lzw.compressor import main
+from lzw3.compressor import main
 
 if __name__ == '__main__':
     main()
