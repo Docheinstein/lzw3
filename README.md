@@ -1,7 +1,7 @@
 LZW3
 ====
 
-Compressor and decompressor that uses [LZW Algorithm](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch) written in Python3.
+Compressor and decompressor that uses [LZW algorithm](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch) written in Python3.
 
 ## REQUIREMENTS
 
