@@ -1,10 +1,18 @@
+import os
 from setuptools import setup, find_packages
+
+
+def read(file_name):
+    with open(os.path.join(os.path.dirname(__file__), file_name)) as f:
+        return f.read()
+
+
 setup(
     name="lzw3",
-    version="0.2",
+    version="0.3",
 
     # Requires python3.5
-    python_requires='>=3.5',
+    python_requires=">=3.5",
 
     # Automatically import lzw3 packages
     packages=find_packages(),
@@ -23,7 +31,8 @@ setup(
     author="Stefano Dottore",
     author_email="docheinstein@gmail.com",
     description="Compressor and decompressor for arbitrary files that use LZW algorithm",
-    license='MIT',
+    long_description=read('README.rst'),
+    license="MIT",
     keywords="lzw lzw3 compressor decompressor compression compress uncompress",
     url="https://github.com/Docheinstein/lzw3"
 )
