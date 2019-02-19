@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 setup(
     name="lzw3",
-    version="0.1",
+    version="0.2",
 
     # Requires python3.5
     python_requires='>=3.5',

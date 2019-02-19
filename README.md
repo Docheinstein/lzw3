@@ -24,14 +24,19 @@ Anyhow, directory can still be compressed using the option: `-r`
 
 The compression phases replaces the original files with the compressed ones, appending the extension ".Z"
 
-Compress a list of files
+Compress a list of files:
 ```
-compress doc1.txt doc2.txt
+python3 -m lzw3.compressor doc1.txt doc2.txt
 ```
-        
+ 
 Compress a directory recursively
 ```
-compress -r /home/user/Docs/Project
+python3 -m lzw3.compressor -r /home/user/Docs/Project
+```
+
+Alternatively you can user the `compress` script as follows:
+```
+compress doc1.txt doc2.txt
 ```
 
 #### Options
@@ -64,12 +69,17 @@ The decompression phases replaces the compressed files (with extension ".Z") wit
 
 Decompress a list of files
 ```
-uncompress doc1.txt.Z doc2.txt.Z
+python3 -m lzw3.decompressor doc1.txt.Z doc2.txt.Z
 ```
         
 Decompress a directory recursively
 ```
-uncompress -r /home/user/Docs/Project
+python3 -m lzw3.decompressor -r /home/user/Docs/Project
+```
+
+Alternatively you can user the `uncompress` script as follows:
+```
+uncompress doc1.txt.Z doc2.txt.Z
 ```
 
 #### Options
