@@ -21,7 +21,7 @@ setup(
 
     # Metadata
     author="Stefano Dottore",
-    author_email="dottorestefano97@gmail.com",
+    author_email="docheinstein@gmail.com",
     description="Compressor and decompressor for arbitrary files that use LZW algorithm",
     license='MIT',
     keywords="lzw lzw3 compressor decompressor compression compress uncompress",
