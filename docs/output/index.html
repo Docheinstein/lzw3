@@ -200,17 +200,23 @@ to handle</td>
 <dd><p>Compressor of regular files that use LZW algorithm.</p>
 <dl class="method">
 <dt id="lzw3.compressor.LZWCompressor.compress">
-<code class="descname">compress</code><span class="sig-paren">(</span><em>in_file_path: str</em>, <em>out_file_path: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.compressor.LZWCompressor.compress" title="Permalink to this definition">¶</a></dt>
+<code class="descname">compress</code><span class="sig-paren">(</span><em>in_file_path: str</em>, <em>out_file_path: str</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#lzw3.compressor.LZWCompressor.compress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compresses the given input file to the output file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>in_file_path</strong> (<em>str</em>) – the path of the (regular) file to compress</li>
 <li><strong>out_file_path</strong> (<em>str</em>) – the path of the file that will contain
 the compressed content of the input file</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">whether the file (exists and) has been compressed successfully</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
 </td>
 </tr>
 </tbody>
@@ -270,17 +276,23 @@ to handle</td>
 <dd><p>Decompressor of regular files that use LZW algorithm.</p>
 <dl class="method">
 <dt id="lzw3.decompressor.LZWDecompressor.decompress">
-<code class="descname">decompress</code><span class="sig-paren">(</span><em>in_file_path: str</em>, <em>out_file_path: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.decompressor.LZWDecompressor.decompress" title="Permalink to this definition">¶</a></dt>
+<code class="descname">decompress</code><span class="sig-paren">(</span><em>in_file_path: str</em>, <em>out_file_path: str</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#lzw3.decompressor.LZWDecompressor.decompress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decompresses the given input file to the output file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>in_file_path</strong> (<em>str</em>) – the path of the compressed file</li>
 <li><strong>out_file_path</strong> (<em>str</em>) – the path of the file that will contain
 the uncompressed content of the input file</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">whether the file (exists and) has been decompressed successfully</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
 </td>
 </tr>
 </tbody>

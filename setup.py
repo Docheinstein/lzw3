@@ -27,6 +27,9 @@ setup(
     # path to your $PATH.
     scripts=["scripts/compress", "scripts/uncompress"],
 
+    # Tests
+    test_suite="tests",
+
     # Metadata
     author="Stefano Dottore",
     author_email="docheinstein@gmail.com",

@@ -2,19 +2,43 @@ import math
 import os
 import time
 from collections import Callable
+from typing import Union
 
 from lzw3.commons.constants import SizeUnits, TimeUnits
 
 
-def read_file(path: str) -> str:
-    """ Reads the content of the given file.
+def read_textual_file(path: str) -> str:
+    """ Reads the content of the given textual file.
     Args:
         path (str): the path of the file
 
     Returns:
-        str: the content of the file
+        str: the content of the textual file
     """
-    with open(path, "r") as f:
+    return read_file(path, "r")
+
+
+def read_binary_file(path: str) -> bytes:
+    """ Reads the content of the given binary file.
+    Args:
+        path (str): the path of the file
+
+    Returns:
+        bytes: the content of the binary file
+    """
+    return read_file(path, "rb")
+
+
+def read_file(path: str, mode: str) -> Union[str, bytes]:
+    """ Reads the content of the given file.
+    Args:
+        path (str): the path of the file
+        mode (str): the open mode, could be "r" or "rb"
+
+    Returns:
+        the content of the file, as string or bytes depending on the mode
+    """
+    with open(path, mode) as f:
         return f.read()
 
 

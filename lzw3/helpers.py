@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from lzw3.commons.log import Loggable, Logger
-from lzw3.res.utils import read_resource
+from lzw3.res.utils import read_textual_resource
 
 
 class LZWHelper(Loggable, ABC):
@@ -166,5 +166,5 @@ class LZWHelperStarter:
             show_help (bool): whether show the help page before quit
         """
         if show_help:
-            print(read_resource(self._help_resource))
+            print(read_textual_resource(self._help_resource))
         exit(exit_code)

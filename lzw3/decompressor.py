@@ -31,14 +31,21 @@ class LZWDecompressor(Loggable):
         self._in_file = None
         self._out_file = None
 
-    def decompress(self, in_file_path: str, out_file_path: str):
+    def decompress(self, in_file_path: str, out_file_path: str) -> bool:
         """ Decompresses the given input file to the output file
 
         Args:
             in_file_path (str): the path of the compressed file
             out_file_path (str): the path of the file that will contain
                 the uncompressed content of the input file
+
+        Returns:
+            bool: whether the file (exists and) has been decompressed successfully
         """
+        if not os.path.exists(in_file_path):
+            self._log("Decompression failed! File '" + in_file_path + "' doesn't exists")
+            return False
+
         self._init()
 
         self._log("Decompressing file '", in_file_path, "' to '", out_file_path, "'")
@@ -105,6 +112,8 @@ class LZWDecompressor(Loggable):
 
         self._in_file.close()
         self._out_file.close()
+
+        return True
 
     def _init(self):
         """ Initializes the decompressor with the initial setup. """
