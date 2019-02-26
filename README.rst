@@ -39,7 +39,7 @@ Compress a list of files:
 
     python3 -m lzw3.compressor doc1.txt doc2.txt
 
-Compress a directory recursively
+Compress a directory recursively:
 
 ::
 
@@ -72,6 +72,10 @@ Options
             Keeps the original files instead of replace those with the
             compressed ones.
 
+        -f
+            Force to compress and keep the compressed file, even if the size
+            of the compressed file is higher than the size of the original one.
+
         -d
             Prints debug messages.
 
@@ -81,13 +85,13 @@ Decompression
 The decompression phases replaces the compressed files (with extension
 ".Z") with the uncompressed ones.
 
-Decompress a list of files
+Decompress a list of files:
 
 ::
 
     python3 -m lzw3.decompressor doc1.txt.Z doc2.txt.Z
 
-Decompress a directory recursively
+Decompress a directory recursively:
 
 ::
 
@@ -118,6 +122,24 @@ Options
         -k
             Keeps the decompressed files after the decompression.
 
+        -f
+            Force to decompress the files even if the file name 
+            doesn't end with ".Z".
+
         -d
             Prints debug messages.
 
+TESTING
+-------
+
+The project comes with few unit tests, both on static or random
+generated files. To run the tests use:
+
+::
+
+    python3 setup.py test
+
+LICENSE
+-------
+
+LZW3 is `MIT licensed <./LICENSE>`__.

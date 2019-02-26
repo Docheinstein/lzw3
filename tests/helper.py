@@ -11,7 +11,8 @@ from lzw3.decompressor import LZWDecompressor
 
 
 def remove_folder(path: str):
-    shutil.rmtree(path)
+    if os.path.exists(path):
+        shutil.rmtree(path)
 
 
 def create_folder(path: str):

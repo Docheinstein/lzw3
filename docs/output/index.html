@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -154,22 +154,24 @@
 <h1>LZW Compressor<a class="headerlink" href="#lzw-compressor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lzw3.compressor.LZWCompressorHelper">
-<em class="property">class </em><code class="descclassname">lzw3.compressor.</code><code class="descname">LZWCompressorHelper</code><span class="sig-paren">(</span><em>verbose: bool</em>, <em>recursive: bool</em>, <em>keep: bool</em>, <em>timed: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.compressor.LZWCompressorHelper" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">lzw3.compressor.</code><code class="descname">LZWCompressorHelper</code><span class="sig-paren">(</span><em>recursive: bool</em>, <em>verbose: bool</em>, <em>time: bool</em>, <em>keep: bool</em>, <em>force: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.compressor.LZWCompressorHelper" title="Permalink to this definition">¶</a></dt>
 <dd><p>An helper that invoke LZWCompressor.compress() and handles some more logic.</p>
 <dl class="method">
 <dt id="lzw3.compressor.LZWCompressorHelper.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>verbose: bool</em>, <em>recursive: bool</em>, <em>keep: bool</em>, <em>timed: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.compressor.LZWCompressorHelper.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>recursive: bool</em>, <em>verbose: bool</em>, <em>time: bool</em>, <em>keep: bool</em>, <em>force: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.compressor.LZWCompressorHelper.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes this helper.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>verbose</strong> (<em>bool</em>) – whether output basic info to standard output</li>
 <li><strong>recursive</strong> (<em>bool</em>) – whether directories should be entered recursively</li>
-<li><strong>keep</strong> (<em>bool</em>) – whether keep original files after the task</li>
-<li><strong>timed</strong> (<em>bool</em>) – whether print the time of each task executed
+<li><strong>verbose</strong> (<em>bool</em>) – whether output basic info to standard output</li>
+<li><strong>time</strong> (<em>bool</em>) – whether print the time of each task executed
 (is taken into consideration only if verbose is true)</li>
+<li><strong>keep</strong> (<em>bool</em>) – whether keep original files after the task</li>
+<li><strong>force</strong> (<em>bool</em>) – whether force the action (for compression means to
+always keep the output file)</li>
 </ul>
 </td>
 </tr>
@@ -230,22 +232,24 @@ the compressed content of the input file</li>
 <h1>LZW Decompressor<a class="headerlink" href="#lzw-decompressor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lzw3.decompressor.LZWDecompressorHelper">
-<em class="property">class </em><code class="descclassname">lzw3.decompressor.</code><code class="descname">LZWDecompressorHelper</code><span class="sig-paren">(</span><em>verbose: bool</em>, <em>recursive: bool</em>, <em>keep: bool</em>, <em>timed: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.decompressor.LZWDecompressorHelper" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">lzw3.decompressor.</code><code class="descname">LZWDecompressorHelper</code><span class="sig-paren">(</span><em>recursive: bool</em>, <em>verbose: bool</em>, <em>time: bool</em>, <em>keep: bool</em>, <em>force: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.decompressor.LZWDecompressorHelper" title="Permalink to this definition">¶</a></dt>
 <dd><p>An helper that invoke LZWDecompressor.decompress() and handles some more logic.</p>
 <dl class="method">
 <dt id="lzw3.decompressor.LZWDecompressorHelper.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>verbose: bool</em>, <em>recursive: bool</em>, <em>keep: bool</em>, <em>timed: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.decompressor.LZWDecompressorHelper.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>recursive: bool</em>, <em>verbose: bool</em>, <em>time: bool</em>, <em>keep: bool</em>, <em>force: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#lzw3.decompressor.LZWDecompressorHelper.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes this helper.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>verbose</strong> (<em>bool</em>) – whether output basic info to standard output</li>
 <li><strong>recursive</strong> (<em>bool</em>) – whether directories should be entered recursively</li>
-<li><strong>keep</strong> (<em>bool</em>) – whether keep original files after the task</li>
-<li><strong>timed</strong> (<em>bool</em>) – whether print the time of each task executed
+<li><strong>verbose</strong> (<em>bool</em>) – whether output basic info to standard output</li>
+<li><strong>time</strong> (<em>bool</em>) – whether print the time of each task executed
 (is taken into consideration only if verbose is true)</li>
+<li><strong>keep</strong> (<em>bool</em>) – whether keep original files after the task</li>
+<li><strong>force</strong> (<em>bool</em>) – whether force the action (for compression means to
+always keep the output file)</li>
 </ul>
 </td>
 </tr>
@@ -314,7 +318,7 @@ the uncompressed content of the input file</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, 0.3
+        &copy; Copyright 2019, 0.4
 
     </p>
   </div>

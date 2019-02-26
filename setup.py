@@ -9,7 +9,7 @@ def read(file_name):
 
 setup(
     name="lzw3",
-    version="0.3",
+    version="0.4",
 
     # Requires python3.5
     python_requires=">=3.5",

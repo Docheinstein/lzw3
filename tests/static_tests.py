@@ -16,9 +16,9 @@ RESOURCES = [
 class LZWStaticTests(LZWTestHelper):
 
     def test_static(self):
-        self.__test(verbose=True)
+        self.__test()
 
-    def __test(self, verbose=False):
+    def __test(self):
         remove_folder(STATIC_FILES_OUTPUT_FOLDER)
         create_folder(STATIC_FILES_OUTPUT_FOLDER)
 

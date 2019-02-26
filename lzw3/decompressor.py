@@ -208,11 +208,13 @@ class LZWDecompressorHelper(LZWHelper):
         if file.endswith(LZWConstants.COMPRESSED_FILE_EXTENSION):
             # The name of the uncompressed file is the same without the .Z at the end
             file_out = file[:(len(file) - len(LZWConstants.COMPRESSED_FILE_EXTENSION))]
+            in_place = False
         elif self._force:
             self._log("File '", file, "' doesn't end with ",
                       LZWConstants.COMPRESSED_FILE_EXTENSION,
                       "; handling it anyhow due force flag (-f)")
             file_out = file
+            in_place = True
         else:
             self._log("File '", file, "' doesn't end with ",
                       LZWConstants.COMPRESSED_FILE_EXTENSION,
@@ -241,18 +243,19 @@ class LZWDecompressorHelper(LZWHelper):
         self._log("Decompression finished", time_string)
         self._print(in_decompression_file_string, " decompressed", time_string)
 
-        # Retrieve perm mask of the file
-        perm_mask = file_permission_mask(file)
+        if not in_place:
+            # Retrieve perm mask of the file
+            perm_mask = file_permission_mask(file)
 
-        if not self._keep:
-            self._log("--> (Deleting compressed file)")
-            os.remove(file)
-        else:
-            self._log("--> (Keeping compressed file)")
+            if not self._keep:
+                self._log("--> (Deleting compressed file)")
+                os.remove(file)
+            else:
+                self._log("--> (Keeping compressed file)")
 
-        # Write permissions on the new file copying to the old ones
-        self._log("Writing previous permissions to new file = ", file_permission_mask)
-        os.chmod(file_out, perm_mask)
+            # Write permissions on the new file copying to the old ones
+            self._log("Writing previous permissions to new file = ", file_permission_mask)
+            os.chmod(file_out, perm_mask)
 
 
 def main():
