@@ -350,6 +350,16 @@ class BitWriter(Loggable):
 
 
 if __name__ == "__main__":
-    bw = BitWriter("bitwriter.bin")
-    bw.write(3155, 15)
+    bw = BitWriter("bit.bin")
+    bw.write(297, 12)
+    bw.write(11, 5)
     bw.close()
+
+    # br = BitReader("bit.bin")
+    # n2 = br.read(12)
+    # n2 = br.read(5)
+    # br.close()
+    #
+    # print("Written: ", n)
+    # print("Read: ", n2)
+

@@ -11,7 +11,7 @@ DESCRIPTION
     appending the extension ".Z".
 
     The replacement is skipped in case the size of the compressed
-    file is not lower than the size of the original one.
+    file is not lower than the size of the original one (unless -f is specified).
 
     The file list can contain either files or directories.
 
@@ -30,6 +30,10 @@ DESCRIPTION
     -k
         Keeps the original files instead of replace those with the
         compressed ones.
+
+    -f
+        Force to compress and keep the compressed file, even if the size
+        of the compressed file is higher than the size of the original one.
 
     -d
         Prints debug messages.

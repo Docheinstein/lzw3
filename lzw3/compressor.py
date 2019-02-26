@@ -219,7 +219,7 @@ class LZWCompressorHelper(LZWHelper):
             in_compression_file_string = ""
 
         # Measure the decompression time if required
-        if self._timed:
+        if self._time:
             ms = timed(LZWCompressor.compress, LZWCompressor(), file, file_out)
             time_string = " (" + humanify_ms(ms) + ")"
         else:
@@ -230,12 +230,17 @@ class LZWCompressorHelper(LZWHelper):
                   " compressed file size would be = ", compressed_size, "B")
 
         # Check whether keep the compressed file instead of the uncompressed one
-        if compressed_size < uncompressed_size:
+        if self._force or compressed_size < uncompressed_size:
+
+            if compressed_size < uncompressed_size:
+                self._log("--> OK! Compressed file size is lower than the original size")
+            else:
+                self._log("Keeping the file even if the size is higher "
+                          "than the original size due force flag (-f)")
 
             # Calculate the percentage of space saved with the compression
             compression_saving = (1 - (compressed_size / uncompressed_size)) * 100
 
-            self._log("--> OK! Compressed file size is lower than the original size")
             self._print(in_compression_file_string, " compressed from ",
                         humanify_bytesize(uncompressed_size), " to ",
                         humanify_bytesize(compressed_size),

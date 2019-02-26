@@ -10,10 +10,10 @@ DESCRIPTION
     Replaces the compressed files with the uncompressed ones,
     removing the extension ".Z".
 
-    The files are decompressed only if they end with the extension ".Z",
-    this is convenient for use the compressor and the decompressor on the
-    same directory recursively and avoid to care if the compressor actually
-    has created ".Z" files or kept the original files.
+    The files are decompressed only if they end with the extension ".Z"
+    (unless -f is specified); this is convenient for use the compressor
+    and the decompressor on the same directory recursively and avoid to care
+    if the compressor actually has created ".Z" files or kept the original files.
 
     -r
         Recursively decompress the files inside the directories
@@ -28,6 +28,10 @@ DESCRIPTION
 
     -k
         Keeps the decompressed files after the decompression.
+
+    -f
+        Force to decompress the files even if the file name
+        doesn't end with ".Z".
 
     -d
         Prints debug messages.

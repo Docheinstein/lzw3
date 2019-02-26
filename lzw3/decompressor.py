@@ -10,12 +10,6 @@ from lzw3.commons.log import Loggable, Logger
 from lzw3.commons.constants import LZWConstants, Resources
 from lzw3.commons.utils import timed, file_permission_mask, humanify_ms
 
-ARG_VERBOSE = "-v"
-ARG_RECURSIVE = "-r"
-ARG_KEEP = "-k"
-ARG_TIME = "-t"
-ARG_DEBUG = "-d"
-
 
 class LZWDecompressor(Loggable):
     """ Decompressor of regular files that use LZW algorithm. """
@@ -123,7 +117,7 @@ class LZWDecompressor(Loggable):
         # from the ROOT node (excluded) to the sequence number associated with the
         # position of the element in the list.
         # e.g. A sequence 'ABC' with sequence number 275 will be placed in
-        # _sequence_table[ABC] = [65 (A), 66 (B), 67 (C)]
+        # _sequence_table[275] = [65 (A), 66 (B), 67 (C)]
         self._sequence_table = []
 
         # Number that will be associated to the next sequence
@@ -209,15 +203,22 @@ class LZWDecompressorHelper(LZWHelper):
         # to use the compressor in a recursive manner and then the decompressor
         # on the same folder, since the compressor could leave some file
         # uncompressed
-        if not file.endswith(LZWConstants.COMPRESSED_FILE_EXTENSION):
+        # Decompress anyhow if the force flag (-f) is specified
+
+        if file.endswith(LZWConstants.COMPRESSED_FILE_EXTENSION):
+            # The name of the uncompressed file is the same without the .Z at the end
+            file_out = file[:(len(file) - len(LZWConstants.COMPRESSED_FILE_EXTENSION))]
+        elif self._force:
+            self._log("File '", file, "' doesn't end with ",
+                      LZWConstants.COMPRESSED_FILE_EXTENSION,
+                      "; handling it anyhow due force flag (-f)")
+            file_out = file
+        else:
             self._log("File '", file, "' doesn't end with ",
                       LZWConstants.COMPRESSED_FILE_EXTENSION,
                       "; skipping it")
             self._print("'", file, "' skipped")
             return
-
-        # The name of the uncompressed file is the same without the .Z at the end
-        file_out = file[:(len(file) - len(LZWConstants.COMPRESSED_FILE_EXTENSION))]
 
         time_string = " "
 
@@ -231,7 +232,7 @@ class LZWDecompressorHelper(LZWHelper):
             in_decompression_file_string = ""
 
         # Measure the compression time if required
-        if self._timed:
+        if self._time:
             ms = timed(LZWDecompressor.decompress, LZWDecompressor(), file, file_out)
             time_string = " (" + humanify_ms(ms) + ")"
         else:

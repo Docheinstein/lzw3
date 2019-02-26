@@ -12,21 +12,25 @@ class LZWHelper(Loggable, ABC):
     eventually on directories in a recursive manner.
     """
 
-    def __init__(self, verbose: bool, recursive: bool, keep: bool, timed: bool):
+    def __init__(self, recursive: bool, verbose: bool,
+                 time: bool, keep: bool, force: bool):
         """ Initializes this helper.
 
         Args:
-            verbose (bool): whether output basic info to standard output
             recursive (bool): whether directories should be entered recursively
+            verbose (bool): whether output basic info to standard output
+            time (bool): whether print the time of each task executed
+                        (is taken into consideration only if verbose is true)
             keep (bool): whether keep original files after the task
-            timed (bool): whether print the time of each task executed
-                (is taken into consideration only if verbose is true)
+            force (bool): whether force the action (for compression means to
+                            always keep the output file)
         """
         super().__init__()
-        self._verbose = verbose
         self._recursive = recursive
+        self._verbose = verbose
+        self._time = time
         self._keep = keep
-        self._timed = timed
+        self._force = force
 
     def handle(self, files: List[str]):
         """ Handles the file list using the settings provided to this helper.
@@ -88,10 +92,11 @@ class LZWHelperStarter:
 
     # Acceptable and known arguments
 
-    ARG_VERBOSE = "-v"
     ARG_RECURSIVE = "-r"
-    ARG_KEEP = "-k"
+    ARG_VERBOSE = "-v"
     ARG_TIME = "-t"
+    ARG_KEEP = "-k"
+    ARG_FORCE = "-f"
     ARG_DEBUG = "-d"
 
     def __init__(self, helper_class: type(LZWHelper), help_res: str):
@@ -108,7 +113,7 @@ class LZWHelperStarter:
 
     def start(self, args: List[str]):
         """ Parses the given argument list and actually start the bound LZWHelper.
-        Accepted arguments are "-v", "-r", "-k", "-t", "-d".
+        Accepted arguments are "-r", "-v", "-t", "-k", "-f", "-d".
 
         Args:
             args (:obj:`list` of :obj:`str`): the argument list (sys.argv)
@@ -119,11 +124,12 @@ class LZWHelperStarter:
         if arg_count == 0:
             self._abort(-1, True)
 
-        verbose = False
         recursive = False
-        debug = False
+        verbose = False
         time = False
         keep = False
+        force = False
+        debug = False
         files = []
 
         # Whether the next arguments will be treated as file names
@@ -141,22 +147,25 @@ class LZWHelperStarter:
             if reading_files_args:
                 files.append(arg)
             else:
-                verbose |= (arg == LZWHelperStarter.ARG_VERBOSE)
                 recursive |= (arg == LZWHelperStarter.ARG_RECURSIVE)
-                keep |= (arg == LZWHelperStarter.ARG_KEEP)
+                verbose |= (arg == LZWHelperStarter.ARG_VERBOSE)
                 time |= (arg == LZWHelperStarter.ARG_TIME)
+                keep |= (arg == LZWHelperStarter.ARG_KEEP)
+                force |= (arg == LZWHelperStarter.ARG_FORCE)
                 debug |= (arg == LZWHelperStarter.ARG_DEBUG)
 
         Logger.enable_logger(debug)
         Logger.log("MAIN", "Executing LZW task with following options:\n",
-                   "\tverbose:    ", verbose, "\n",
                    "\trecursive:  ", recursive, "\n",
-                   "\tkeep:       ", keep, "\n",
+                   "\tverbose:    ", verbose, "\n",
                    "\ttime:       ", time, "\n",
+                   "\tkeep:       ", keep, "\n",
+                   "\tforce:      ", force, "\n",
                    "\tdebug:      ", debug, "\n",
                    "\tfiles:      ", files)
 
-        self._helper_class(verbose, recursive, keep, time).handle(files)
+        self._helper_class(recursive=recursive, verbose=verbose,
+                           time=time, keep=keep, force=force).handle(files)
 
     def _abort(self, exit_code: int, show_help: bool):
         """ Quits with the given exit code, eventually showing an help page.
