@@ -1,8 +1,7 @@
 import math
 import os
 import time
-from collections import Callable
-from typing import Union
+from typing import Union, Callable
 
 from lzw3.commons.constants import SizeUnits, TimeUnits
 
